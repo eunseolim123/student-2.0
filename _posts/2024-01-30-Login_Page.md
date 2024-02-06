@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: #000; /* Set text color to black */
+            color: #000; 
         }
         label {
             display: block;
@@ -42,20 +42,68 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        #messageContainer {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <form action="process_login.php" method="post">
+    <form id="loginForm">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob" required>
         <button type="submit">Login</button>
     </form>
-
+    <div id="messageContainer"></div>
+    <form id="signupForm">
+        <label for="newUsername">New Username:</label>
+        <input type="text" id="newUsername" name="newUsername" required>
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+        <button type="submit">Sign Up</button>
+    </form>
+    <script>
+        const apiUrl = 'http://127.0.0.1:8086/api/Login/';
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            // Make an API request for login
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Login failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle successful login
+                console.log('Login response:', data);
+                showLoginMessage('Login successful', 'green');
+                // Redirect to a different page
+                window.location.href = 'http://127.0.0.1:4100/student-2.0/'; // Replace 'dashboard.html' with the desired page
+            })
+            .catch(error => {
+                // Handle login failure
+                console.error('Login error:', error);
+                showLoginMessage('Login failed. Incorrect username or password.', 'red');
+            });
+        });
+        function showLoginMessage(message, color) {
+            const loginMessage = document.createElement('p');
+            loginMessage.textContent = message;
+            loginMessage.style.color = color;
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = ''; // Clear previous messages
+            messageContainer.appendChild(loginMessage);
+        }
+    </script>
 </body>
 </html>
