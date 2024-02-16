@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -88,7 +87,7 @@
                 console.log('Login response:', data);
                 showLoginMessage('Login successful', 'green');
                 // Redirect to a different page
-                window.location.href = 'http://127.0.0.1:4100/student-2.0/'; // Replace 'dashboard.html' with the desired page
+                window.location.href = 'http://127.0.0.1:4100/student-2.0/';
             })
             .catch(error => {
                 // Handle login failure
