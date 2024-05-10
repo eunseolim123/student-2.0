@@ -12,7 +12,7 @@ type: hacks
 ## Collections
 - From VSCode using SQLite3 Editor, show your unique collection/table in database, display rows and columns in the table of the SQLite database.
 ![]({{ site.baseurl }}/images/ds1.png "Data Table")
-This data table shows our data for the probability calculator of getting a 90%+. The data consists of the subject, whether the individual's attention was focused/divided, and how many solutions they found (0-4). When a user inputs specific values that align with the ones in the table, their probability of getting a 90%+ is calculated and returned.
+This data table shows our data for the probability calculator of getting over a 90%. The data consists of the subject, whether the individual's attention was focused/divided, and how many solutions they found (0-4). When a user inputs specific values that align with the ones in the table, their probability of getting a 90%+ is calculated and returned.
 
 - From VSCode model, show your unique code that was created to initialize table and create test data.
 ![]({{ site.baseurl }}/images/ds2.png "Data Code")
